@@ -1,18 +1,18 @@
-//ïB‡i to·n: m? ph?m, s·ch, qu?n ·o, v?t li?u x‚y d?ng, di?n tho?i, m·y tÌnh
+//‚Ä¢B√†i to√°n: m? ph?m, s√°ch, qu?n √°o, v?t li?u x√¢y d?ng, di?n tho?i, m√°y t√≠nh
 //
-//YÍu c?u
+//Y√™u c?u
 //
-//X‚y d?ng c?u tr˙c d?i tu?ng du?c qu?n l˝ (ch?n 01 d?i tu?ng cÛ Ìt nh?‡ 5 thu?c t?nh) C‡i d?t c·c thao t·c v?i danh s·ch (m?i thao t·c tuong ?ng v?i m?t CTC
+//X√¢y d?ng c?u tr√∫c d?i tu?ng du?c qu?n l√Ω (ch?n 01 d?i tu?ng c√≥ √≠t nh?√† 5 thu?c t?nh) C√†i d?t c√°c thao t√°c v?i danh s√°ch (m?i thao t√°c tuong ?ng v?i m?t CTC
 //
-//ìNh?p m?t m?ng d?i tu?ng. m„n l?i m?ng m?ng d?i tu?ng
+//‚ÄúNh?p m?t m?ng d?i tu?ng. m√£n l?i m?ng m?ng d?i tu?ng
 //
-//ïTÏm ki?m m?t d?i tu?ng n‡o d? theo In danh s·ch c·c d?i tu?ng theo di?u ki?n n‡o dÛ ï S?p x?p c·c d?i tu?ng theo tiÍu ch? n‡o d? (s? d?ng thu?t to‡n
+//‚Ä¢T√¨m ki?m m?t d?i tu?ng n√†o d? theo In danh s√°ch c√°c d?i tu?ng theo di?u ki?n n√†o d√≥ ‚Ä¢ S?p x?p c√°c d?i tu?ng theo ti√™u ch? n√†o d? (s? d?ng thu?t to√†n
 //
 //InsertSort, BubbleSort, QuickSort)
 //
-//ïTÏm gi· tr? l?n nh?t trong m?ng d?i tu?ng
+//‚Ä¢T√¨m gi√° tr? l?n nh?t trong m?ng d?i tu?ng
 //
-//Chuong trÏnh chÌnh (·p d?ng c·c CTC d„ c?i d?t trÍn ï–? ngh? c‡i d?t du?i menu l?a ch?n
+//Chuong tr√¨nh ch√≠nh (√°p d?ng c√°c CTC d√£ c?i d?t tr√™n ‚Ä¢√ê? ngh? c√†i d?t du?i menu l?a ch?n
 #include<iostream>
 #include<string.h>
 #include<iomanip>
@@ -100,35 +100,67 @@ int partition(int l, int r, NhanVien ds[]) {
             Swap(ds[i].luong, ds[j].luong);
         }
     }
-    // –ua pivot ve giua mang d„ sap xep
+    // √êua pivot ve giua mang d√£ sap xep
     i++;
     Swap(ds[i].luong, ds[r].luong);
-    return i; // Tra ve vi trÌ cua pivot
+    return i; // Tra ve vi tr√≠ cua pivot
 }
 
 void quicksort(int l, int r, NhanVien ds[]) {
-    if (l >= r) return; // –ieu kien dung de quy khi chi cÚn mot phan tu hoac khÙng cÛ phan tu n‡o
+    if (l >= r) return; // √êieu kien dung de quy khi chi c√≤n mot phan tu hoac kh√¥ng c√≥ phan tu n√†o
     int p = partition(l, r, ds);
     quicksort(l, p - 1,ds);
     quicksort(p + 1, r,ds);
 }
-int main (){
-	int n= 3, x ;
-	int l=0,r=n-1;	
-	NhanVien ds[20];
-	nhapdanhsachnhanvien(n, ds);
-	indanhsachnhanvien(n, ds);
-//	cout<<"nhap ma nhan vien tim kiem "; cin>>x; 	
-//	timkiemnhanvien(x,n,ds);
-	cout<<"SAU KHI SAP XEP: "<<endl;
-	quicksort(l, r, ds);
-	indanhsachnhanvien(n, ds);
-// nhan vien co luong cao nhat
-	cout<<"nhan vien co luong cao nhat: "<<endl;
-	cout<<"ma nhan vien: "<<ds[n-1].maNV<<endl;
-	cout<<"ho ten nhan vien: "<<ds[n-1].hten<<endl;
-	cout<<"dia chi nhan vien: "<<ds[n-1].diachi<<endl;
-	cout<<"sdt nhan vien: "<<ds[n-1].sdt<<endl;
-	cout<<"luong nhan vien: "<<ds[n-1].luong<<endl;	
- 	
-}//main
+int main() {
+    int n = 3, x;
+    int l = 0, r = n - 1;
+    NhanVien ds[20];
+    
+    while (true) {
+        cout << "Menu:" << endl;
+        cout << "1. Nhap danh sach nhan vien" << endl;
+        cout << "2. Hien thi danh sach nhan vien" << endl;
+        cout << "3. Tim kiem nhan vien theo ma" << endl;
+        cout << "4. Sap xep danh sach nhan vien theo luong" << endl;
+        cout << "5. Hien thi nhan vien co luong cao nhat" << endl;
+        cout << "6. Thoat" << endl;
+        cout << "Nhap lua chon cua ban: ";
+        
+        int choice;
+        cin >> choice;
+        
+        switch (choice) {
+            case 1:
+                nhapdanhsachnhanvien(n, ds);
+                break;
+            case 2:
+                indanhsachnhanvien(n, ds);
+                break;
+            case 3:
+                cout << "Nhap ma nhan vien can tim: ";
+                cin >> x;
+                timkiemnhanvien(x, n, ds);
+                break;
+            case 4:
+                quicksort(l, r, ds);
+                cout << "Danh sach nhan vien sau khi sap xep theo luong:" << endl;
+                indanhsachnhanvien(n, ds);
+                break;
+            case 5:
+                cout << "Nhan vien co luong cao nhat: " << endl;
+                cout << "Ma nhan vien: " << ds[n - 1].maNV << endl;
+                cout << "Ho ten nhan vien: " << ds[n - 1].hten << endl;
+                cout << "Dia chi nhan vien: " << ds[n - 1].diachi << endl;
+                cout << "So dien thoai nhan vien: " << ds[n - 1].sdt << endl;
+                cout << "Luong nhan vien: " << ds[n - 1].luong << endl;
+                break;
+            case 6:
+                return 0; // Exit the program
+            default:
+                cout << "Lua chon khong hop le. Vui long chon lai." << endl;
+        }
+    }
+
+    return 0;
+}
